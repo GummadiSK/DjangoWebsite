@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Custom URL Shortener - Analytics</title>
+    <style>
+        body {
+            background-color: #e3ade6; /* Light blue background color */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 0;
+        }
+        .data_link {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .url_link {
+            margin-bottom: 5px;
+        }
+        .link_element a {
+            color: blue;
+            text-decoration: none;
+        }
+        .stats_total {
+            margin-top: 10px;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .btn-cutt {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .btn-cutt:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+</head>
+
+<body class="pace-done lout_stats30">
+    <main id="content" role="main" class="wyniki wyniki_all">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 page_log_in mt-0">
+                    <h2 class="h1" style="text-align: center;">Link Analytics</h2>
+                </div>
+
+                <div class="url_options url_stats_o" id="1">
+                    <p class="data_link">April 2, 2022</p>
+                    <p class="url_link">
+                        https://www.codechef.com/ratings/all?filterBy=Country%3DIndia&itemsPerPage=15&order=asc&page=1&sortBy=global_rank
+                    </p>
+                    <p id="link" class="link_element">
+                        <a href="/cc-ranklist" class="short_url_l" target="_blank">
+                            https://rr-url.herokuapp.com/cc-ranklist</a>
+                    </p>
+                    <div class="stats_total btn-cutt click_stats btn_norm">
+                        <div>Total clicks <strong class="allClicks">0</strong></div>
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+            <div class="row">
+                <div class="col-6">
+                    <h2 style="text-align: center; font-size: 25px; font-weight: 500;">Country Clicks</h2>
+                    <canvas id="barChart"></canvas>
+                </div>
+                <div class="col-6">
+                    <h2 style="text-align: center; font-size: 25px; font-weight: 500;">Device clicks</h2>
+                    <div style="width: 200px; height: 200px;"> <!-- Set a fixed size for the container -->
+                        <canvas id="donutChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Script for creating and displaying the pie chart -->
+            <script>
+                // Data for the pie chart
+                const labels = ['Desktop', 'Mobile'];
+                const data = [50, 50]; // Example data, replace with actual data
+
+                // Get the canvas element for the pie chart
+                const pieChartCanvas = document.getElementById('donutChart').getContext('2d');
+
+                // Create the pie chart
+                const pieChart = new Chart(pieChartCanvas, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Device Clicks',
+                            data: data,
+                            backgroundColor: [
+                                'rgb(54, 162, 235)',
+                                'rgb(255, 205, 86)'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Device Clicks Distribution'
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </main>
+
+    <script src="js/analytics.js"></script>
+</body>
+
+</html>
